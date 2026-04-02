@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import SearchPanel from "./components/SearchPanel";
@@ -7,29 +6,30 @@ import ResultsHeader from "./components/ResultsHeader";
 import ResultsGrid from "./components/ResultsGrid";
 import Pagination from "./components/Pagination";
 
+import { useLeads } from "./hooks/useLeads";
+
 function App() {
-  const [leads, setLeads] = useState([]);
-  const [filtered, setFiltered] = useState([]);
-  const [status, setStatus] = useState("");
-  const [currentPage, setCurrentPage] = useState(0);
+  const {
+    filtered,
+    paginatedLeads,
+    status,
+    currentPage,
+    setCurrentPage,
+    searchLeads,
+  } = useLeads();
 
   return (
     <>
       <Header />
       <Hero />
 
-      <SearchPanel
-        setLeads={setLeads}
-        setFiltered={setFiltered}
-        setStatus={setStatus}
-        setCurrentPage={setCurrentPage}
-      />
+      <SearchPanel onSearch={searchLeads} />
 
       <StatusBar status={status} />
 
-      <ResultsHeader count={filtered.length} />
+      <ResultsHeader count={filtered.length} data={filtered} />
 
-      <ResultsGrid leads={filtered} currentPage={currentPage} />
+      <ResultsGrid leads={paginatedLeads} />
 
       <Pagination
         total={filtered.length}

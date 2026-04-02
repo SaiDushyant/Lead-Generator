@@ -1,3 +1,5 @@
+import { mapsLink } from "../utils/helpers";
+
 const LeadCard = ({ lead }) => {
   return (
     <div className="lead-card">
@@ -6,14 +8,9 @@ const LeadCard = ({ lead }) => {
 
       {lead.rating && <p>⭐ {lead.rating}</p>}
 
-      {lead.place_id && (
-        <a
-          href={`https://www.google.com/maps/place/?q=place_id:${lead.place_id}`}
-          target="_blank"
-        >
-          View on Maps
-        </a>
-      )}
+      <a href={mapsLink(lead.place_id, lead.name)} target="_blank">
+        View on Maps
+      </a>
     </div>
   );
 };

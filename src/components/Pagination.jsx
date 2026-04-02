@@ -6,7 +6,7 @@ const Pagination = ({ total, currentPage, setCurrentPage }) => {
   if (pages <= 1) return null;
 
   return (
-    <div className="pagination">
+    <div>
       <button
         disabled={currentPage === 0}
         onClick={() => setCurrentPage((p) => p - 1)}

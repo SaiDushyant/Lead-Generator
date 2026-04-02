@@ -1,14 +1,9 @@
 import LeadCard from "./LeadCard";
 
-const PAGE_SIZE = 12;
-
-const ResultsGrid = ({ leads, currentPage }) => {
-  const start = currentPage * PAGE_SIZE;
-  const pageData = leads.slice(start, start + PAGE_SIZE);
-
+const ResultsGrid = ({ leads }) => {
   return (
     <div className="results-grid">
-      {pageData.map((lead, i) => (
+      {leads.map((lead, i) => (
         <LeadCard key={i} lead={lead} />
       ))}
     </div>
